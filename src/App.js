@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import HeroCards from "./components/HeroCards";
+import Header from "./components/Header";
+import "./App.css";
+import axios from "axios";
+
+
 
 function App() {
+  const [searchText, setSearchText] = useState("Harry potter");
+  const [data,setdata] = useState();
+  const InputEvent = (e) => {
+    const data = e.target.value;
+    setSearchText(data);
+  }
+  useEffect(() => {
+    const getCardItem = async () => {
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=`+searchText+`&key=AIzaSyAD9ln22aK4PNSId-OzUA-9bRNR_ar8FqI`)
+        .then(res=>{
+           console.log(res.data.items)
+           setdata(res.data.items);
+          }  )
+        .catch(err=> console.log(err))
+    };
+    if(searchText!==" "){
+      getCardItem();
+    }
+   
+  },[searchText]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header searchText={searchText} InputEvent={InputEvent}/>
+      <HeroCards data={data}/>
     </div>
   );
 }

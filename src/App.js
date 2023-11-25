@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 function App() {
-  const [searchText, setSearchText] = useState("Harry Potter");
+  const [searchText, setSearchText] = useState("Harry Potter and Sherlock");
   const [data,setdata] = useState();
   const InputEvent = (e) => {
     const data = e.target.value;

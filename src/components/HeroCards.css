@@ -13,7 +13,7 @@
     cursor: pointer;
 }
   .card-details img{
-    transform: rotate(-10deg);
+    transform: rotate(-6deg);
     /* position: absolute; */
     border-right: 11px solid white;
   }

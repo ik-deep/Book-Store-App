@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 function App() {
-  const [searchText, setSearchText] = useState("Harry potter");
+  const [searchText, setSearchText] = useState("Harry Potter");
   const [data,setdata] = useState();
   const InputEvent = (e) => {
     const data = e.target.value;
@@ -22,10 +22,9 @@ function App() {
           }  )
         .catch(err=> console.log(err))
     };
-    if(searchText!==" "){
+    if(searchText!==''){
       getCardItem();
     }
-   
   },[searchText]);
 
   return (
